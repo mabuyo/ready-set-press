@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_instructions_dialog">InstructionsDialogActivity</string>
+    <string name="title_activity_single_mode_training">SingleModeTrainingActivity</string>
 </resources>

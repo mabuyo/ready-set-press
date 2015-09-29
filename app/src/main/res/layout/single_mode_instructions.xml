@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/rl">
+
+    <TextView
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="When the button says &quot;Press&quot;, press the button."
+        android:id="@+id/howToPlayInstructions"
+        android:layout_below="@+id/howToPlayTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="HOW TO PLAY"
+        android:id="@+id/howToPlayTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dismiss message"
+        android:id="@+id/startSingleModeButton"
+        android:layout_below="@+id/howToPlayInstructions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
+
+</RelativeLayout>
