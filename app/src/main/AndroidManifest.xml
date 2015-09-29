@@ -17,10 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".InstructionsDialogActivity"
-            android:label="@string/title_activity_instructions_dialog" >
-        </activity>
-        <activity
             android:name=".SingleModeTrainingActivity"
             android:label="@string/title_activity_single_mode_training" >
         </activity>

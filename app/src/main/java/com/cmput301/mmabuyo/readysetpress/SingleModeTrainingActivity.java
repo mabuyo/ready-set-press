@@ -1,17 +1,45 @@
 package com.cmput301.mmabuyo.readysetpress;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class SingleModeTrainingActivity extends AppCompatActivity {
+    private Handler clickPromptHandler = new Handler();
+    protected ButtonTimer trainingButton = new ButtonTimer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_mode_button);
+
+        clickPromptHandler.postDelayed(new Runnable() {
+            public void run() {
+                displayClickPrompt();
+            }
+        }, 2000);
     }
+
+    private void displayClickPrompt() {
+        // shows the prompt to click the button, starts the button timer!
+        Toast.makeText(this, "Click me now!", Toast.LENGTH_LONG).show();
+        trainingButton.setStartTime(System.currentTimeMillis());
+    }
+
+    private void trainingButtonClicked() {
+        // record time
+        trainingButton.setEndTime(System.currentTimeMillis());
+        long elapsedTime = trainingButton.getTimeElapsed();
+
+        // store    
+    }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,4 +62,5 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

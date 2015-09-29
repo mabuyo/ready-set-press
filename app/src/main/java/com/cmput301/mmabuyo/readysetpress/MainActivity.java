@@ -45,28 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
     // http://www.tutorialspoint.com/android/android_alert_dialoges.htm
     public void singleModeInstructions(View view) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Single Mode Training Instructions");
-        alertDialogBuilder.setMessage("Click the button when instructed to. Your reaction time will be recorded.");
+        AlertDialog.Builder singleModeInstructionsDialog = new AlertDialog.Builder(this);
+        singleModeInstructionsDialog.setTitle("Single Mode Training Instructions");
+        singleModeInstructionsDialog.setMessage("Click the button when instructed to. Your reaction time will be recorded.");
 
-        alertDialogBuilder.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+        singleModeInstructionsDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 Intent switchToTrainingMode = new Intent(MainActivity.this, SingleModeTrainingActivity.class);
                 startActivity(switchToTrainingMode);
-
-               // Toast.makeText(MainActivity.this,"You clicked yes button", Toast.LENGTH_LONG).show();
             }
         });
 
-//        alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                finish();
-//            }
-//        });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
+        AlertDialog alertDialog = singleModeInstructionsDialog.create();
         alertDialog.show();
     }
 }
