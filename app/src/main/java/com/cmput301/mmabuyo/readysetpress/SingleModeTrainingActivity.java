@@ -52,6 +52,7 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
     }
 
     public void trainingButtonClicked(View view) {
+        // click button prompted to click!
         if (trainingButtonTimer.isClickable()) {
             // record time
             trainingButtonTimer.setEndTime(System.currentTimeMillis());
@@ -70,17 +71,17 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
             reactionTimeDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-
+                    // reset button
+                    trainingButtonTimer.reset();
+                    trainingButton.setText("Wait...");
+                    clickPromptActivity();
                 }
             });
 
             AlertDialog alertDialog = reactionTimeDialog.create();
             alertDialog.show();
 
-            // reset button
-            trainingButtonTimer.reset();
-            trainingButton.setText("Wait...");
-
+        // you clicked without being prompted
         } else {
             AlertDialog.Builder notClickableDialog = new AlertDialog.Builder(this);
             notClickableDialog.setTitle("WAIT!");
@@ -89,18 +90,18 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
             notClickableDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-
+                    trainingButtonTimer.reset();
+                    trainingButton.setText("Wait...");
+                    clickedTooFast = false;
+                    clickPromptActivity();
                 }
             });
 
             AlertDialog alertDialog = notClickableDialog.create();
             alertDialog.show();
 
-            trainingButtonTimer.reset();
-            clickedTooFast = true;
         }
 
-        clickPromptActivity();
     }
 
     private void saveInFile(ArrayList<Long> stats) {

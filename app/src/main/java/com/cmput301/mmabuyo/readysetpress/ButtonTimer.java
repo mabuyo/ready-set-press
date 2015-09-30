@@ -9,6 +9,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by mmabuyo on 2015-09-28.
@@ -82,20 +83,28 @@ public class ButtonTimer {
     }
 
     public long getOverallFastestTime() {
+
         return Collections.max(this.getReactionTimes());
+
     }
 
     public long getOverallSlowestTime() {
         return Collections.min(this.getReactionTimes());
+
     }
 
     public long getOverallAverageTime() {
         ArrayList<Long> reactionTimes = this.getReactionTimes();
-        long sum = 0;
-        for (Long time : reactionTimes) {
-            sum += time;
+        if (reactionTimes.size() == 0) {
+            throw new NoSuchElementException();
+        } else {
+            long sum = 0;
+            for (Long time : reactionTimes) {
+                sum += time;
+            }
+            return sum / reactionTimes.size();
         }
-        return sum / reactionTimes.size();
+
     }
 
 //    public long getOverallMedianTime() {
@@ -127,16 +136,21 @@ public class ButtonTimer {
     public long getLastTenAverageTime() {
         ArrayList<Long> rtimes = getReactionTimes();
         List<Long> times;
-        if (rtimes.size() <= 10) {
-            times = this.getReactionTimes();
+        if (reactionTimes.size() == 0) {
+            throw new NoSuchElementException();
         } else {
-            times = rtimes.subList(rtimes.size()-11,rtimes.size()-1);
+            if (rtimes.size() <= 10) {
+                times = this.getReactionTimes();
+            } else {
+                times = rtimes.subList(rtimes.size()-11,rtimes.size()-1);
+            }
+
+            long sum = 0;
+            for (Long time : times) {
+                sum += time;
+            }
+            return sum / times.size();
         }
-        long sum = 0;
-        for (Long time : times) {
-            sum += time;
-        }
-        return sum / times.size();
     }
 
 }
