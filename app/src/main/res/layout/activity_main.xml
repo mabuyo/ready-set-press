@@ -29,7 +29,8 @@
             android:text="Multiplayer Game"
             android:id="@+id/button2"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.33"/>
+            android:layout_weight="0.33"
+            android:onClick="showMultiplayerActivity"/>
 
         <Button
             android:layout_width="match_parent"

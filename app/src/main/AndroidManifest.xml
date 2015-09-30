@@ -28,6 +28,14 @@
             android:name=".SingleStatsActivity"
             android:label="@string/title_activity_single_statistics" >
         </activity>
+        <activity
+            android:name=".MultiplayerActivity"
+            android:label="@string/title_activity_multiplayer" >
+        </activity>
+        <activity
+            android:name=".TwoPlayerActivity"
+            android:label="@string/title_activity_two_player" >
+        </activity>
     </application>
 
 </manifest>

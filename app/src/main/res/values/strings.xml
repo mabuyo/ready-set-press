@@ -8,4 +8,6 @@
     <string name="title_activity_single_mode_training">SingleModeTrainingActivity</string>
     <string name="title_activity_statistics">StatisticsActivity</string>
     <string name="title_activity_single_statistics">Single Mode Statistics</string>
+    <string name="title_activity_multiplayer">MultiplayerActivity</string>
+    <string name="title_activity_two_player">TwoPlayerActivity</string>
 </resources>
