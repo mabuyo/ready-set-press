@@ -12,11 +12,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+
 public class SingleModeTrainingActivity extends AppCompatActivity {
     private Handler clickPromptHandler = new Handler();
     protected ButtonTimer trainingButtonTimer = new ButtonTimer();
     Button trainingButton;
     protected boolean clickedTooFast = false;
+    private static final String SINGLESTATS_FILENAME = "singlestats.sav";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,8 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
             long elapsedTime = trainingButtonTimer.getTimeElapsed();
 
             // TODO: store and save in file
-
+            trainingButtonTimer.addReactionTime(elapsedTime);
+            saveInFile(trainingButtonTimer.getReactionTimes());
 
             // display elapsed time
             AlertDialog.Builder reactionTimeDialog = new AlertDialog.Builder(this);
@@ -86,7 +96,6 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
             AlertDialog alertDialog = notClickableDialog.create();
             alertDialog.show();
 
-
             trainingButtonTimer.reset();
             clickedTooFast = true;
         }
@@ -94,8 +103,24 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
         clickPromptActivity();
     }
 
+    private void saveInFile(ArrayList<Long> stats) {
 
+        try {
+            FileOutputStream fos = openFileOutput(SINGLESTATS_FILENAME,
+                    0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(stats, writer);
+            writer.flush();
+            fos.close();
+            Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @Override
