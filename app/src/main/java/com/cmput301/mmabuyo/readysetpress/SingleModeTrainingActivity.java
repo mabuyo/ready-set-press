@@ -1,40 +1,97 @@
 package com.cmput301.mmabuyo.readysetpress;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class SingleModeTrainingActivity extends AppCompatActivity {
     private Handler clickPromptHandler = new Handler();
-    protected ButtonTimer trainingButton = new ButtonTimer();
+    protected ButtonTimer trainingButtonTimer = new ButtonTimer();
+    Button trainingButton;
+    protected boolean clickedTooFast = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_mode_button);
+        trainingButton = (Button) findViewById(R.id.trainingButton);
+        Context context = getApplicationContext();
+        clickPromptActivity();
 
+    }
+
+    public void clickPromptActivity() {
         clickPromptHandler.postDelayed(new Runnable() {
             public void run() {
-                displayClickPrompt();
+                if (!clickedTooFast) {
+                    // shows the prompt to click the button, starts the button timer!
+                    trainingButton.setText("Click me!");
+                    trainingButtonTimer.setClickable(true);
+                    trainingButtonTimer.setStartTime(System.currentTimeMillis());
+                }
+                clickedTooFast = false;
             }
         }, 2000);
     }
 
-    private void displayClickPrompt() {
-        // shows the prompt to click the button, starts the button timer!
-        Toast.makeText(this, "Click me now!", Toast.LENGTH_LONG).show();
-        trainingButton.setStartTime(System.currentTimeMillis());
-    }
+    public void trainingButtonClicked(View view) {
+        if (trainingButtonTimer.isClickable()) {
+            // record time
+            trainingButtonTimer.setEndTime(System.currentTimeMillis());
+            long elapsedTime = trainingButtonTimer.getTimeElapsed();
 
-    private void trainingButtonClicked() {
-        // record time
-        trainingButton.setEndTime(System.currentTimeMillis());
-        long elapsedTime = trainingButton.getTimeElapsed();
+            // TODO: store and save in file
 
-        // store    
+
+            // display elapsed time
+            AlertDialog.Builder reactionTimeDialog = new AlertDialog.Builder(this);
+            reactionTimeDialog.setTitle("Reaction Time");
+            String message = "You clicked in " + String.valueOf(elapsedTime) + " ms!";
+            reactionTimeDialog.setMessage(message);
+
+            reactionTimeDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+
+            AlertDialog alertDialog = reactionTimeDialog.create();
+            alertDialog.show();
+
+            // reset button
+            trainingButtonTimer.reset();
+            trainingButton.setText("Wait...");
+
+        } else {
+            AlertDialog.Builder notClickableDialog = new AlertDialog.Builder(this);
+            notClickableDialog.setTitle("WAIT!");
+            notClickableDialog.setMessage("You must wait until the app prompts you to click the button.");
+
+            notClickableDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+
+            AlertDialog alertDialog = notClickableDialog.create();
+            alertDialog.show();
+
+
+            trainingButtonTimer.reset();
+            clickedTooFast = true;
+        }
+
+        clickPromptActivity();
     }
 
 

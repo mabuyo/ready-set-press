@@ -20,6 +20,14 @@
             android:name=".SingleModeTrainingActivity"
             android:label="@string/title_activity_single_mode_training" >
         </activity>
+        <activity
+            android:name=".StatisticsActivity"
+            android:label="@string/title_activity_statistics" >
+        </activity>
+        <activity
+            android:name=".SingleStatsActivity"
+            android:label="@string/title_activity_single_statistics" >
+        </activity>
     </application>
 
 </manifest>

@@ -60,4 +60,9 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = singleModeInstructionsDialog.create();
         alertDialog.show();
     }
+
+    public void showStatisticsActivity(View view) {
+        Intent switchToStatisticsActivity = new Intent(MainActivity.this, StatisticsActivity.class);
+        startActivity(switchToStatisticsActivity);
+    }
 }

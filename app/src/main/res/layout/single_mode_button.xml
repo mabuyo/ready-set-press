@@ -5,6 +5,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Wait for the prompt, then click me!"
-        android:id="@+id/waitButton" />
+        android:id="@+id/trainingButton"
+        android:text="Wait..."
+        android:onClick="trainingButtonClicked"/>
 </LinearLayout>

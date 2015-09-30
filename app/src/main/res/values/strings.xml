@@ -6,4 +6,6 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_instructions_dialog">InstructionsDialogActivity</string>
     <string name="title_activity_single_mode_training">SingleModeTrainingActivity</string>
+    <string name="title_activity_statistics">StatisticsActivity</string>
+    <string name="title_activity_single_statistics">Single Mode Statistics</string>
 </resources>
