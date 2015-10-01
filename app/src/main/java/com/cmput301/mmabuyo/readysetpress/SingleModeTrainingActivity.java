@@ -22,17 +22,22 @@ import java.util.ArrayList;
 
 public class SingleModeTrainingActivity extends AppCompatActivity {
     private Handler clickPromptHandler = new Handler();
-    protected ButtonTimer trainingButtonTimer = new ButtonTimer();
-    Button trainingButton;
+    protected ButtonTimer trainingButtonTimer;
+    protected Button trainingButton;
     protected boolean clickedTooFast = false;
-    private static final String SINGLESTATS_FILENAME = "singlestats.sav";
+    MemoryManager memoryManager = new MemoryManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_mode_button);
         trainingButton = (Button) findViewById(R.id.trainingButton);
-        Context context = getApplicationContext();
+
+        // reaction timer
+        trainingButtonTimer = new ButtonTimer();
+        trainingButtonTimer.setReactionTimes(memoryManager.loadFile(this,
+                trainingButtonTimer.getReactionTimes(),
+                memoryManager.getSingleStatsFilename()));
         clickPromptActivity();
 
     }
@@ -105,22 +110,7 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
     }
 
     private void saveInFile(ArrayList<Long> stats) {
-
-        try {
-            FileOutputStream fos = openFileOutput(SINGLESTATS_FILENAME,
-                    0);
-            OutputStreamWriter writer = new OutputStreamWriter(fos);
-            Gson gson = new Gson();
-            gson.toJson(stats, writer);
-            writer.flush();
-            fos.close();
-            Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        memoryManager.saveFile(this, stats, memoryManager.getSingleStatsFilename());
     }
 
 

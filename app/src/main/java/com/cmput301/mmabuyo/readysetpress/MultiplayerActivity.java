@@ -1,5 +1,7 @@
 package com.cmput301.mmabuyo.readysetpress;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +40,21 @@ public class MultiplayerActivity extends AppCompatActivity {
     }
 
     public void switchTo2PMode(View view) {
-        Intent switchToTwoPlayerActivity = new Intent(MultiplayerActivity.this, TwoPlayerActivity.class);
-        startActivity(switchToTwoPlayerActivity);
+        AlertDialog.Builder multiplayerInstructionsDialog = new AlertDialog.Builder(this);
+        multiplayerInstructionsDialog.setTitle("Multiplayer Gameshow Instructions");
+        multiplayerInstructionsDialog.setMessage("The host will dismiss this message. The first player to click their button wins!");
+
+        multiplayerInstructionsDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent switchToTwoPlayerActivity = new Intent(MultiplayerActivity.this, TwoPlayerActivity.class);
+                startActivity(switchToTwoPlayerActivity);
+            }
+        });
+
+        AlertDialog alertDialog = multiplayerInstructionsDialog.create();
+        alertDialog.show();
+
     }
+
 }

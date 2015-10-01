@@ -14,7 +14,8 @@
         android:id="@+id/P1button2P"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="someoneClicked"/>
 
     <Button
         android:layout_width="match_parent"
@@ -25,5 +26,6 @@
         android:layout_marginTop="80dp"
         android:layout_alignEnd="@+id/P1button2P"
         android:layout_alignParentStart="true"
-        android:layout_weight="0.51" />
+        android:layout_weight="0.51"
+        android:onClick="someoneClicked"/>
 </LinearLayout>

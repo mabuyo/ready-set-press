@@ -30,6 +30,7 @@ public class SingleStatsActivity extends AppCompatActivity {
     protected TextView singleOverallStatsList;
     protected TextView singleLast10StatsList;
     ButtonTimer singleModeButton;
+    protected MemoryManager memoryManager = new MemoryManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,19 +84,20 @@ public class SingleStatsActivity extends AppCompatActivity {
     }
 
     private void loadFromFile() {
-        try {
-            FileInputStream fis = openFileInput(SINGLESTATS_FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            Gson gson = new Gson();
-            // Following line based on https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html retrieved 2015-09-21
-            Type listType = new TypeToken<ArrayList<Long>>() {}.getType();
-            singleStats = gson.fromJson(in, listType);
-
-        } catch (FileNotFoundException e) {
-            singleStats = new ArrayList<Long>();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.singleStats = memoryManager.loadFile(this, this.singleStats, memoryManager.getSingleStatsFilename());
+//        try {
+//            FileInputStream fis = openFileInput(SINGLESTATS_FILENAME);
+//            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+//            Gson gson = new Gson();
+//            // Following line based on https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html retrieved 2015-09-21
+//            Type listType = new TypeToken<ArrayList<Long>>() {}.getType();
+//            singleStats = gson.fromJson(in, listType);
+//
+//        } catch (FileNotFoundException e) {
+//            singleStats = new ArrayList<Long>();x
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private void saveInFile(ArrayList<Long> stats) {

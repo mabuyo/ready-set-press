@@ -74,6 +74,10 @@ public class ButtonTimer {
         return this.reactionTimes;
     }
 
+    public void setReactionTimes(ArrayList<Long> reactionTimes) {
+        this.reactionTimes = reactionTimes;
+    }
+
     public void addReactionTime(long time) {
         reactionTimes.add(time);
     }

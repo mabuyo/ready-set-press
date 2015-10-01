@@ -70,4 +70,6 @@ public class MainActivity extends AppCompatActivity {
         Intent switchToMultiplayerActivity = new Intent(MainActivity.this, MultiplayerActivity.class);
         startActivity(switchToMultiplayerActivity);
     }
+
+
 }
