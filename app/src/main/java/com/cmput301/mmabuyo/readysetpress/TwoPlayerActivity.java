@@ -11,6 +11,7 @@ public class TwoPlayerActivity extends AppCompatActivity {
     protected Player playerOne;
     protected Player playerTwo;
     protected MemoryManager memoryManager = new MemoryManager();
+    protected GameshowResults gameResults;
 
 
     @Override
@@ -22,6 +23,8 @@ public class TwoPlayerActivity extends AppCompatActivity {
         playerOne = new Player(1);
         playerTwo = new Player(2);
 
+        // initiate game results, make sure t load
+        gameResults = memoryManager.loadGameshowResults(TwoPlayerActivity.this, memoryManager.getMultiStatsFilename());
     }
 
     @Override

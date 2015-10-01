@@ -57,4 +57,8 @@ public class StatisticsActivity extends AppCompatActivity {
         startActivity(switchToSingleStatsActivity);
     }
 
+    public void showMultiStatsActivity(View view) {
+        Intent switchToMultiStatsActivity = new Intent(StatisticsActivity.this, MultiplayerStatsActivity.class);
+        startActivity(switchToMultiStatsActivity);
+    }
 }

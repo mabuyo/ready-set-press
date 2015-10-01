@@ -10,4 +10,5 @@
     <string name="title_activity_single_statistics">Single Mode Statistics</string>
     <string name="title_activity_multiplayer">MultiplayerActivity</string>
     <string name="title_activity_two_player">TwoPlayerActivity</string>
+    <string name="title_activity_multiplayer_stats">MultiplayerStatsActivity</string>
 </resources>

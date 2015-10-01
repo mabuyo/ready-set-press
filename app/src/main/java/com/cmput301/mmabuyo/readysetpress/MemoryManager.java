@@ -68,4 +68,54 @@ public class MemoryManager {
         }
         return stats;
     }
+
+    protected GameshowResults loadGameshowResults(Context context, String filename) {
+        GameshowResults results = new GameshowResults();
+        try {
+            FileInputStream fis = context.openFileInput(filename);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            results = gson.fromJson(in, GameshowResults.class);
+            return results;
+        } catch (FileNotFoundException e) {
+            generateGameshowResults(context);
+            loadGameshowResults(context, getMultiStatsFilename());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return results;
+    }
+
+    protected void generateGameshowResults(Context context) {
+        try {
+            FileOutputStream fos = context.openFileOutput(getMultiStatsFilename(),
+                    0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            GameshowResults results = new GameshowResults();
+            gson.toJson(results, writer);
+            writer.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected void saveGameshowResults(Context context, GameshowResults results) {
+        try {
+            FileOutputStream fos = context.openFileOutput(getMultiStatsFilename(),
+                    0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(results, writer);
+            writer.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

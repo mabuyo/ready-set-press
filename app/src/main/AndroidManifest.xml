@@ -36,6 +36,10 @@
             android:name=".TwoPlayerActivity"
             android:label="@string/title_activity_two_player" >
         </activity>
+        <activity
+            android:name=".MultiplayerStatsActivity"
+            android:label="@string/title_activity_multiplayer_stats" >
+        </activity>
     </application>
 
 </manifest>
