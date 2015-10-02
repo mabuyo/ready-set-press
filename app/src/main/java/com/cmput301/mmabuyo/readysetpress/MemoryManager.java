@@ -2,10 +2,7 @@ package com.cmput301.mmabuyo.readysetpress;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,9 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 /**
  * Created by mmabuyo on 2015-09-30.

@@ -12,4 +12,5 @@
     <string name="title_activity_two_player">TwoPlayerActivity</string>
     <string name="title_activity_multiplayer_stats">MultiplayerStatsActivity</string>
     <string name="title_activity_three_player">ThreePlayerActivity</string>
+    <string name="title_activity_four_player">FourPlayerActivity</string>
 </resources>

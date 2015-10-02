@@ -44,6 +44,10 @@
             android:name=".ThreePlayerActivity"
             android:label="@string/title_activity_three_player" >
         </activity>
+        <activity
+            android:name=".FourPlayerActivity"
+            android:label="@string/title_activity_four_player" >
+        </activity>
     </application>
 
 </manifest>
