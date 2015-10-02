@@ -1,11 +1,6 @@
 package com.cmput301.mmabuyo.readysetpress;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,23 +9,25 @@ import java.util.NoSuchElementException;
 /**
  * Created by mmabuyo on 2015-09-28.
  */
-public class ButtonTimer {
+public class ReactionTime {
     private long startTime;
     private long endTime;
-    private long timeElapsed;
+    private long reactionTime;
     private boolean clickable;
     protected ArrayList<Long> reactionTimes = new ArrayList<Long>();
+    protected StatsCalculator statsCalculator = new StatsCalculator();
+    protected MemoryManager memoryManager = new MemoryManager();
 
-    public ButtonTimer() {
+    public ReactionTime() {
         this.clickable = Boolean.FALSE;
     }
 
-    public ButtonTimer(long startTime) {
+    public ReactionTime(long startTime) {
         this.clickable = Boolean.FALSE;
         this.startTime = startTime;
     }
 
-    public ButtonTimer(ArrayList<Long> reactionTimes) {
+    public ReactionTime(ArrayList<Long> reactionTimes) {
         this.clickable = Boolean.FALSE;
         this.reactionTimes = reactionTimes;
     }
@@ -51,8 +48,8 @@ public class ButtonTimer {
         this.endTime = endTime;
     }
 
-    public long getTimeElapsed() {
-        return this.timeElapsed = getEndTime() - getStartTime();
+    public long getReactionTime() {
+        return this.reactionTime = getEndTime() - getStartTime();
     }
 
     public boolean isClickable() {
@@ -67,7 +64,7 @@ public class ButtonTimer {
         this.startTime = System.currentTimeMillis();
         this.endTime = 0;
         this.clickable = false;
-        this.timeElapsed = 0;
+        this.reactionTime = 0;
     }
 
     public ArrayList<Long> getReactionTimes() {
@@ -79,44 +76,13 @@ public class ButtonTimer {
     }
 
     public void addReactionTime(long time) {
-        reactionTimes.add(time);
+        this.reactionTimes.add(time);
     }
 
     public void clearReactionTimes() {
         reactionTimes.clear();
     }
 
-    public long getOverallFastestTime() {
-
-        return Collections.max(this.getReactionTimes());
-
-    }
-
-    public long getOverallSlowestTime() {
-        return Collections.min(this.getReactionTimes());
-
-    }
-
-    public long getOverallAverageTime() {
-        ArrayList<Long> reactionTimes = this.getReactionTimes();
-        if (reactionTimes.size() == 0) {
-            throw new NoSuchElementException();
-        } else {
-            long sum = 0;
-            for (Long time : reactionTimes) {
-                sum += time;
-            }
-            return sum / reactionTimes.size();
-        }
-
-    }
-
-//    public long getOverallMedianTime() {
-//        ArrayList<Long> reactionTimes = getReactionTimes();
-//
-//
-//
-//    }
 
     public long getLastTenFastestTime() {
         //Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
@@ -155,6 +121,10 @@ public class ButtonTimer {
             }
             return sum / times.size();
         }
+    }
+
+    public StatsCalculator getStats() {
+        return this.statsCalculator;
     }
 
 }

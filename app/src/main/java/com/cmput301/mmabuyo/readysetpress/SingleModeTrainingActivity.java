@@ -1,7 +1,6 @@
 package com.cmput301.mmabuyo.readysetpress;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,19 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class SingleModeTrainingActivity extends AppCompatActivity {
     private Handler clickPromptHandler = new Handler();
-    protected ButtonTimer trainingButtonTimer;
+    protected ReactionTime trainingReactionTime;
     protected Button trainingButton;
     protected boolean clickedTooFast = false;
     MemoryManager memoryManager = new MemoryManager();
@@ -34,10 +26,8 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
         trainingButton = (Button) findViewById(R.id.trainingButton);
 
         // reaction timer
-        trainingButtonTimer = new ButtonTimer();
-        trainingButtonTimer.setReactionTimes(memoryManager.loadFile(this,
-                trainingButtonTimer.getReactionTimes(),
-                memoryManager.getSingleStatsFilename()));
+        trainingReactionTime = memoryManager.loadTrainingResults(SingleModeTrainingActivity.this, memoryManager.getSingleStatsFilename());
+
         clickPromptActivity();
 
     }
@@ -48,8 +38,8 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
                 if (!clickedTooFast) {
                     // shows the prompt to click the button, starts the button timer!
                     trainingButton.setText("Click me!");
-                    trainingButtonTimer.setClickable(true);
-                    trainingButtonTimer.setStartTime(System.currentTimeMillis());
+                    trainingReactionTime.setClickable(true);
+                    trainingReactionTime.setStartTime(System.currentTimeMillis());
                 }
                 clickedTooFast = false;
             }
@@ -58,26 +48,23 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
 
     public void trainingButtonClicked(View view) {
         // click button prompted to click!
-        if (trainingButtonTimer.isClickable()) {
+        if (trainingReactionTime.isClickable()) {
             // record time
-            trainingButtonTimer.setEndTime(System.currentTimeMillis());
-            long elapsedTime = trainingButtonTimer.getTimeElapsed();
-
-            // TODO: store and save in file
-            trainingButtonTimer.addReactionTime(elapsedTime);
-            saveInFile(trainingButtonTimer.getReactionTimes());
+            trainingReactionTime.setEndTime(System.currentTimeMillis());
+            trainingReactionTime.addReactionTime(trainingReactionTime.getReactionTime());
+            trainingReactionTime.memoryManager.saveTrainingResults(this, trainingReactionTime);
 
             // display elapsed time
             AlertDialog.Builder reactionTimeDialog = new AlertDialog.Builder(this);
             reactionTimeDialog.setTitle("Reaction Time");
-            String message = "You clicked in " + String.valueOf(elapsedTime) + " ms!";
+            String message = "You clicked in " + String.valueOf(trainingReactionTime.getReactionTime()) + " ms!";
             reactionTimeDialog.setMessage(message);
 
             reactionTimeDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
                     // reset button
-                    trainingButtonTimer.reset();
+                    trainingReactionTime.reset();
                     trainingButton.setText("Wait...");
                     clickPromptActivity();
                 }
@@ -95,7 +82,7 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
             notClickableDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
-                    trainingButtonTimer.reset();
+                    trainingReactionTime.reset();
                     trainingButton.setText("Wait...");
                     clickedTooFast = false;
                     clickPromptActivity();
@@ -109,9 +96,6 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
 
     }
 
-    private void saveInFile(ArrayList<Long> stats) {
-        memoryManager.saveFile(this, stats, memoryManager.getSingleStatsFilename());
-    }
 
 
     @Override

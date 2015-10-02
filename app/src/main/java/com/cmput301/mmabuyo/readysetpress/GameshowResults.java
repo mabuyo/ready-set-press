@@ -56,12 +56,12 @@ public class GameshowResults {
                 getFourPlayerResults()[player.getPid()-1]++;
                 break;
         }
-
-        //memoryManager.saveGameshowResults(TwoPlayerActivity.this, this);
     }
 
-    protected String printSomething() {
-        return "Yes test";
+    protected void clear() {
+        this.setTwoPlayerResults(new int[2]);
+        this.setThreePlayerResults(new int[3]);
+        this.setFourPlayerResults(new int[4]);
     }
 
 }

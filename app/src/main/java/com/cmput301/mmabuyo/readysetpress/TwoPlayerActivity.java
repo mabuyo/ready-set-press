@@ -55,6 +55,8 @@ public class TwoPlayerActivity extends AppCompatActivity {
             case R.id.P1button2P:
                 playerOne.addClick();
                 Toast.makeText(this, "Player 1 clicked first!", Toast.LENGTH_SHORT).show();
+                gameResults.addClick(playerOne, 2);
+                memoryManager.saveGameshowResults(TwoPlayerActivity.this, gameResults);
                 break;
             case R.id.P2button2P:
                 playerTwo.addClick();

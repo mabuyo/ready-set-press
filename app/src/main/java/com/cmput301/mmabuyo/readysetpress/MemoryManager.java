@@ -1,6 +1,7 @@
 package com.cmput301.mmabuyo.readysetpress;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,16 +35,35 @@ public class MemoryManager {
         return this.MULTISTATS_FILENAME;
     }
 
-    protected void saveFile(Context context, ArrayList<Long> stats, String filename) {
+    protected ReactionTime loadTrainingResults(Context context, String filename) {
+        ReactionTime results;
         try {
-            FileOutputStream fos = context.openFileOutput(filename,
+            FileInputStream fis = context.openFileInput(filename);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            results = gson.fromJson(in, ReactionTime.class);
+            Toast.makeText(context,"Loaded single player training results", Toast.LENGTH_SHORT).show();
+            return results;
+        } catch (FileNotFoundException e) {
+            generateTrainingResults(context);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Toast.makeText(context,"No training results recorded.", Toast.LENGTH_SHORT).show();
+        return new ReactionTime();
+    }
+
+    protected void generateTrainingResults(Context context) {
+        try {
+            FileOutputStream fos = context.openFileOutput(getSingleStatsFilename(),
                     0);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
-            gson.toJson(stats, writer);
+            ReactionTime results = new ReactionTime();    // only different line in generate and save
+            gson.toJson(results, writer);
             writer.flush();
             fos.close();
-
+            Toast.makeText(context,"Generated Training results", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -51,22 +71,20 @@ public class MemoryManager {
         }
     }
 
-    protected ArrayList<Long> loadFile(Context context, ArrayList<Long> stats, String filename) {
+    protected void saveTrainingResults(Context context, ReactionTime reactionTime) {
         try {
-            FileInputStream fis = context.openFileInput(filename);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            FileOutputStream fos = context.openFileOutput(getSingleStatsFilename(),
+                    0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
-            // Following line based on https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html retrieved 2015-09-21
-            Type listType = new TypeToken<ArrayList<Long>>() {}.getType();
-            stats = gson.fromJson(in, listType);
-            return stats;
-
+            gson.toJson(reactionTime, writer);
+            writer.flush();
+            fos.close();
         } catch (FileNotFoundException e) {
-            stats = new ArrayList<Long>();
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return stats;
     }
 
     protected GameshowResults loadGameshowResults(Context context, String filename) {
@@ -76,6 +94,7 @@ public class MemoryManager {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
             results = gson.fromJson(in, GameshowResults.class);
+            Toast.makeText(context,"Loaded game show results", Toast.LENGTH_SHORT).show();
             return results;
         } catch (FileNotFoundException e) {
             generateGameshowResults(context);
@@ -92,7 +111,7 @@ public class MemoryManager {
                     0);
             OutputStreamWriter writer = new OutputStreamWriter(fos);
             Gson gson = new Gson();
-            GameshowResults results = new GameshowResults();
+            GameshowResults results = new GameshowResults();    // only different line in generate and save
             gson.toJson(results, writer);
             writer.flush();
             fos.close();
