@@ -103,4 +103,19 @@ public class ReactionTime {
             return recentTimes;
         }
     }
+
+    public ArrayList<Long> getHundredRecentReactionTimes() {
+        ArrayList<Long> rtimes = this.getReactionTimes();
+        if (rtimes.size() == 0) {
+            return rtimes;
+        }
+        if (rtimes.size() < 100) {
+            return rtimes;
+        } else {
+            ArrayList<Long> recentTimes = new ArrayList<Long>();
+            List<Long> last100 = rtimes.subList(rtimes.size()-100, rtimes.size());
+            recentTimes.addAll(0, last100);
+            return recentTimes;
+        }
+    }
 }

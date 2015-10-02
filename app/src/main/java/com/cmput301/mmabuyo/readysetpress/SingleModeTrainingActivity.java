@@ -42,7 +42,7 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
                 }
                 clickedTooFast = false;
             }
-        }, 2000);
+        }, 1000);
     }
 
     public void trainingButtonClicked(View view) {

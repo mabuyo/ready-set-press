@@ -64,10 +64,10 @@ public class MultiplayerStatsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void clearMultiplayerStatistics(View view) {
         // delete the file or resave something empty?
         gameshowResults.clear();
         memoryManager.saveGameshowResults(this, gameshowResults);
+        finish();
     }
 }

@@ -10,9 +10,9 @@ import java.util.NoSuchElementException;
  * Created by mmabuyo on 2015-09-29.
  */
 public class SingleStatsActivity extends AppCompatActivity {
-    private static final String SINGLESTATS_FILENAME = "singlestats.sav";
     protected TextView singleOverallStatsList;
     protected TextView singleLast10StatsList;
+    protected TextView singleLast100StatsList;
     protected ReactionTime reactionTime;
     protected MemoryManager memoryManager = new MemoryManager();
 
@@ -22,6 +22,7 @@ public class SingleStatsActivity extends AppCompatActivity {
         setContentView(R.layout.show_singlestats);
         singleOverallStatsList = (TextView) findViewById(R.id.singleOverallStatsList);
         singleLast10StatsList = (TextView) findViewById(R.id.singleLast10StatsList);
+        singleLast100StatsList = (TextView) findViewById(R.id.singleLast100StatsList);
 
         // if file doesn't exist, then single stats is an empty array! it will throw a NoSuchElementException
         reactionTime = memoryManager.loadTrainingResults(this, memoryManager.getSingleStatsFilename());
@@ -48,6 +49,16 @@ public class SingleStatsActivity extends AppCompatActivity {
                     "The slowest reaction time is: " + String.valueOf(last10slowest) + '\n' +
                     "The average reaction time is: " + String.valueOf(last10average) + '\n';
             singleLast10StatsList.setText(last10Message);
+
+            long last100fastest = reactionTime.getStats().getFastestTime(reactionTime.getHundredRecentReactionTimes());
+            long last100slowest = reactionTime.getStats().getSlowestTime(reactionTime.getHundredRecentReactionTimes());
+            long last100average = reactionTime.getStats().getAverageTime(reactionTime.getHundredRecentReactionTimes());
+
+            String last100Message = "LAST ONE HUNDRED\n" +
+                    "The fastest reaction time is: " + String.valueOf(last100fastest) + '\n' +
+                    "The slowest reaction time is: " + String.valueOf(last100slowest) + '\n' +
+                    "The average reaction time is: " + String.valueOf(last100average) + '\n';
+            singleLast100StatsList.setText(last100Message);
 
         } catch (NoSuchElementException e){
             String errorMessage = "No statistics found. Please play the games and come back to this page!";
