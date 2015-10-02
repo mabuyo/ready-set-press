@@ -1,20 +1,9 @@
 package com.cmput301.mmabuyo.readysetpress;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
@@ -50,9 +39,9 @@ public class SingleStatsActivity extends AppCompatActivity {
             singleOverallStatsList.setText(overallMessage);
 
 
-            long last10fastest = reactionTime.getLastTenFastestTime();
-            long last10slowest = reactionTime.getLastTenSlowestTime();
-            long last10average = reactionTime.getLastTenAverageTime();
+            long last10fastest = reactionTime.getStats().getFastestTime(reactionTime.getTenRecentReactionTimes());
+            long last10slowest = reactionTime.getStats().getSlowestTime(reactionTime.getTenRecentReactionTimes());
+            long last10average = reactionTime.getStats().getAverageTime(reactionTime.getTenRecentReactionTimes());
 
             String last10Message = "LAST TEN\n" +
                     "The fastest reaction time is: " + String.valueOf(last10fastest) + '\n' +
@@ -80,25 +69,26 @@ public class SingleStatsActivity extends AppCompatActivity {
         // delete the file or resave something empty?
         reactionTime.clearReactionTimes();
         memoryManager.saveTrainingResults(this, reactionTime);
+        finish();
     }
 
-    public void sendEmail(View view) {
-        String[] addresses = new String[1];
-        addresses[0] = "mabuyo@ualberta.ca";
-        String subject = "Statistics";
-        composeEmail(addresses,subject);
-    }
+//    public void sendEmail(View view) {
+//        String[] addresses = new String[1];
+//        addresses[0] = "mabuyo@ualberta.ca";
+//        String subject = "Statistics";
+//        composeEmail(addresses,subject);
+//    }
 
-    // http://developer.android.com/guide/components/intents-common.html#Email
-    public void composeEmail(String[] addresses, String subject) {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
+//    // http://developer.android.com/guide/components/intents-common.html#Email
+//    public void composeEmail(String[] addresses, String subject) {
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+//        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+//        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
+//    }
 
 
 

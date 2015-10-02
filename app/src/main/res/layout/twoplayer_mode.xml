@@ -9,12 +9,10 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="155dp"
+        android:layout_height="wrap_content"
         android:text="Player 1"
         android:id="@+id/P1button2P"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:layout_weight="0.5"
         android:onClick="someoneClicked"/>
 
     <Button
@@ -22,10 +20,6 @@
         android:layout_height="wrap_content"
         android:text="Player 2"
         android:id="@+id/P2button2P"
-        android:layout_below="@+id/P1button2P"
-        android:layout_marginTop="80dp"
-        android:layout_alignEnd="@+id/P1button2P"
-        android:layout_alignParentStart="true"
-        android:layout_weight="0.51"
+        android:layout_weight="0.5"
         android:onClick="someoneClicked"/>
 </LinearLayout>

@@ -29,7 +29,6 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
         trainingReactionTime = memoryManager.loadTrainingResults(SingleModeTrainingActivity.this, memoryManager.getSingleStatsFilename());
 
         clickPromptActivity();
-
     }
 
     public void clickPromptActivity() {
@@ -91,12 +90,8 @@ public class SingleModeTrainingActivity extends AppCompatActivity {
 
             AlertDialog alertDialog = notClickableDialog.create();
             alertDialog.show();
-
         }
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

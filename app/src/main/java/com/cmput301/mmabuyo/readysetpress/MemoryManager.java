@@ -36,14 +36,12 @@ public class MemoryManager {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
             results = gson.fromJson(in, ReactionTime.class);
-            Toast.makeText(context,"Loaded single player training results", Toast.LENGTH_SHORT).show();
             return results;
         } catch (FileNotFoundException e) {
             generateTrainingResults(context);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Toast.makeText(context,"No training results recorded.", Toast.LENGTH_SHORT).show();
         return new ReactionTime();
     }
 
@@ -57,7 +55,6 @@ public class MemoryManager {
             gson.toJson(results, writer);
             writer.flush();
             fos.close();
-            Toast.makeText(context,"Generated Training results", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -88,7 +85,6 @@ public class MemoryManager {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
             results = gson.fromJson(in, GameshowResults.class);
-            Toast.makeText(context,"Loaded game show results", Toast.LENGTH_SHORT).show();
             return results;
         } catch (FileNotFoundException e) {
             generateGameshowResults(context);

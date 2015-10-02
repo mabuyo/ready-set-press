@@ -1,6 +1,8 @@
 package com.cmput301.mmabuyo.readysetpress;
 
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -83,48 +85,22 @@ public class ReactionTime {
         reactionTimes.clear();
     }
 
-
-    public long getLastTenFastestTime() {
-        //Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
-        ArrayList<Long> rtimes = getReactionTimes();
-        if (rtimes.size() <= 10) {
-            return Collections.max(this.getReactionTimes());
-        } else {
-            return Collections.max(rtimes.subList(rtimes.size() - 11, rtimes.size() - 1));
-        }
-    }
-
-    public long getLastTenSlowestTime() {
-        ArrayList<Long> rtimes = getReactionTimes();
-        if (rtimes.size() <= 10) {
-            return Collections.min(this.getReactionTimes());
-        } else {
-            return Collections.min(rtimes.subList(rtimes.size() - 11, rtimes.size() - 1));
-        }
-    }
-
-    public long getLastTenAverageTime() {
-        ArrayList<Long> rtimes = getReactionTimes();
-        List<Long> times;
-        if (reactionTimes.size() == 0) {
-            throw new NoSuchElementException();
-        } else {
-            if (rtimes.size() <= 10) {
-                times = this.getReactionTimes();
-            } else {
-                times = rtimes.subList(rtimes.size()-11,rtimes.size()-1);
-            }
-
-            long sum = 0;
-            for (Long time : times) {
-                sum += time;
-            }
-            return sum / times.size();
-        }
-    }
-
     public StatsCalculator getStats() {
         return this.statsCalculator;
     }
 
+    public ArrayList<Long> getTenRecentReactionTimes() {
+        ArrayList<Long> rtimes = this.getReactionTimes();
+        if (rtimes.size() == 0) {
+            return rtimes;
+        }
+        if (rtimes.size() < 10) {
+            return rtimes;
+        } else {
+            ArrayList<Long> recentTimes = new ArrayList<Long>();
+            List<Long> last10 = rtimes.subList(rtimes.size()-10, rtimes.size());
+            recentTimes.addAll(0, last10);
+            return recentTimes;
+        }
+    }
 }
