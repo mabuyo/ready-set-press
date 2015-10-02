@@ -7,11 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.NoSuchElementException;
-
 public class MultiplayerStatsActivity extends AppCompatActivity {
     protected GameshowResults gameshowResults;
-    protected TextView gameshowResultsList;
+    protected TextView twoPResultsList;
+    protected TextView threePResultsList;
+    protected TextView fourPResultsList;
     protected MemoryManager memoryManager = new MemoryManager();
 
     @Override
@@ -19,10 +19,26 @@ public class MultiplayerStatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_multistats);
 
-        gameshowResultsList = (TextView) findViewById(R.id.twoPlayerStatsList);
+        twoPResultsList = (TextView) findViewById(R.id.twoPlayerStatsList);
+        threePResultsList = (TextView) findViewById(R.id.threePlayerStatsList);
+        fourPResultsList = (TextView) findViewById(R.id.fourPlayerStatsList);
+
         gameshowResults = memoryManager.loadGameshowResults(MultiplayerStatsActivity.this, memoryManager.getMultiStatsFilename());
 
-        gameshowResultsList.setText("P1 clicks: " + gameshowResults.getTwoPlayerResults()[0]);
+        String twoPlayerList = "P1 clicks: " + gameshowResults.getTwoPlayerResults()[0] + '\n' +
+                "P2 clicks: " + gameshowResults.getTwoPlayerResults()[1] + '\n';
+        twoPResultsList.setText(twoPlayerList);
+
+        String threePlayerList = "P1 clicks: " + gameshowResults.getThreePlayerResults()[0] + '\n' +
+                "P2 clicks: " + gameshowResults.getThreePlayerResults()[1] + '\n' +
+                "P3 clicks: " + gameshowResults.getThreePlayerResults()[2] + '\n';
+        threePResultsList.setText(threePlayerList);
+
+        String fourPlayerList = "P1 clicks: " + gameshowResults.getFourPlayerResults()[0] + '\n' +
+                "P2 clicks: " + gameshowResults.getFourPlayerResults()[1] + '\n' +
+                "P3 clicks: " + gameshowResults.getFourPlayerResults()[2] + '\n' +
+                "P4 clicks: " + gameshowResults.getFourPlayerResults()[3] + '\n';
+        fourPResultsList.setText(fourPlayerList);
 
     }
 

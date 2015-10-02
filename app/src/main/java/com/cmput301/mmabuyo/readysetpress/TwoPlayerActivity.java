@@ -13,7 +13,6 @@ public class TwoPlayerActivity extends AppCompatActivity {
     protected MemoryManager memoryManager = new MemoryManager();
     protected GameshowResults gameResults;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +60,8 @@ public class TwoPlayerActivity extends AppCompatActivity {
             case R.id.P2button2P:
                 playerTwo.addClick();
                 Toast.makeText(this, "Player 2 clicked first!", Toast.LENGTH_SHORT).show();
+                gameResults.addClick(playerTwo, 2);
+                memoryManager.saveGameshowResults(TwoPlayerActivity.this, gameResults);
                 break;
             default:
                 Toast.makeText(this, "Something's gone wrong.", Toast.LENGTH_SHORT).show();
