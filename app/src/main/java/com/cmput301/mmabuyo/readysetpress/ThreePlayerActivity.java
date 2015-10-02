@@ -9,29 +9,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class TwoPlayerActivity extends AppCompatActivity {
+public class ThreePlayerActivity extends AppCompatActivity {
     protected Player playerOne;
     protected Player playerTwo;
+    protected Player playerThree;
     protected MemoryManager memoryManager = new MemoryManager();
     protected GameshowResults gameResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.twoplayer_mode);
+        setContentView(R.layout.threeplayer_mode);
 
         // initiate players
         playerOne = new Player(1);
         playerTwo = new Player(2);
+        playerThree = new Player(3);
 
-        // initiate game results, make sure t load
-        gameResults = memoryManager.loadGameshowResults(TwoPlayerActivity.this, memoryManager.getMultiStatsFilename());
+        // initiate game results, make sure it loads
+        gameResults = memoryManager.loadGameshowResults(ThreePlayerActivity.this, memoryManager.getMultiStatsFilename());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_two_player, menu);
+        getMenuInflater().inflate(R.menu.menu_three_player, menu);
         return true;
     }
 
@@ -54,17 +56,23 @@ public class TwoPlayerActivity extends AppCompatActivity {
         int pclicked = 0;
         // find out who, increment their click and save
         switch (view.getId()) {
-            case R.id.P1button2P:
+            case R.id.P1button3P:
                 playerOne.addClick();
-                gameResults.addClick(playerOne, 2);
-                memoryManager.saveGameshowResults(TwoPlayerActivity.this, gameResults);
+                gameResults.addClick(playerOne, 3);
+                memoryManager.saveGameshowResults(ThreePlayerActivity.this, gameResults);
                 pclicked = 1;
                 break;
-            case R.id.P2button2P:
+            case R.id.P2button3P:
                 playerTwo.addClick();
-                gameResults.addClick(playerTwo, 2);
-                memoryManager.saveGameshowResults(TwoPlayerActivity.this, gameResults);
+                gameResults.addClick(playerTwo, 3);
+                memoryManager.saveGameshowResults(ThreePlayerActivity.this, gameResults);
                 pclicked = 2;
+                break;
+            case R.id.P3button3P:
+                playerThree.addClick();
+                gameResults.addClick(playerThree, 3);
+                memoryManager.saveGameshowResults(ThreePlayerActivity.this, gameResults);
+                pclicked = 3;
                 break;
             default:
                 Toast.makeText(this, "Something has gone wrong.", Toast.LENGTH_SHORT).show();

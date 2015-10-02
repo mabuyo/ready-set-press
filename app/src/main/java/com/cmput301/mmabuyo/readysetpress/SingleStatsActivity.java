@@ -1,5 +1,7 @@
 package com.cmput301.mmabuyo.readysetpress;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -78,6 +80,24 @@ public class SingleStatsActivity extends AppCompatActivity {
         // delete the file or resave something empty?
         reactionTime.clearReactionTimes();
         memoryManager.saveTrainingResults(this, reactionTime);
+    }
+
+    public void sendEmail(View view) {
+        String[] addresses = new String[1];
+        addresses[0] = "mabuyo@ualberta.ca";
+        String subject = "Statistics";
+        composeEmail(addresses,subject);
+    }
+
+    // http://developer.android.com/guide/components/intents-common.html#Email
+    public void composeEmail(String[] addresses, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
 

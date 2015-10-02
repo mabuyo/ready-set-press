@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:text="3 Players"
         android:id="@+id/button4"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="switchTo3PMode"/>
 
     <Button
         android:layout_width="match_parent"

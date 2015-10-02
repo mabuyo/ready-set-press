@@ -40,6 +40,10 @@
             android:name=".MultiplayerStatsActivity"
             android:label="@string/title_activity_multiplayer_stats" >
         </activity>
+        <activity
+            android:name=".ThreePlayerActivity"
+            android:label="@string/title_activity_three_player" >
+        </activity>
     </application>
 
 </manifest>

@@ -57,4 +57,22 @@ public class MultiplayerActivity extends AppCompatActivity {
 
     }
 
+    public void switchTo3PMode(View view) {
+        AlertDialog.Builder multiplayerInstructionsDialog = new AlertDialog.Builder(this);
+        multiplayerInstructionsDialog.setTitle("Multiplayer Gameshow Instructions");
+        multiplayerInstructionsDialog.setMessage("The host will dismiss this message. The first player to click their button wins!");
+
+        multiplayerInstructionsDialog.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent switchToThreePlayerActivity = new Intent(MultiplayerActivity.this, ThreePlayerActivity.class);
+                startActivity(switchToThreePlayerActivity);
+            }
+        });
+
+        AlertDialog alertDialog = multiplayerInstructionsDialog.create();
+        alertDialog.show();
+
+    }
+
 }
