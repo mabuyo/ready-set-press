@@ -1,5 +1,7 @@
 package com.cmput301.mmabuyo.readysetpress;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -69,5 +71,29 @@ public class MultiplayerStatsActivity extends AppCompatActivity {
         gameshowResults.clear();
         memoryManager.saveGameshowResults(this, gameshowResults);
         finish();
+    }
+
+    public void sendEmail(View view) {
+        String[] addresses = {"mabuyo@ualberta.ca"};
+        String subject = "Multiplayer Gameshow Statistics";
+        composeEmail(addresses,subject);
+    }
+
+    // http://developer.android.com/guide/components/intents-common.html#Email
+    public void composeEmail(String[] addresses, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+
+        // get stats as text and insert into body
+        String body = twoPResultsList.getText().toString() + '\n' +
+                threePResultsList.getText().toString() + '\n' +
+                fourPResultsList.getText().toString()+'\n';
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }

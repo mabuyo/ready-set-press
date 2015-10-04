@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
 import java.util.NoSuchElementException;
 
 /**
@@ -87,7 +90,7 @@ public class SingleStatsActivity extends AppCompatActivity {
 
     public void sendEmail(View view) {
         String[] addresses = {"mabuyo@ualberta.ca"};
-        String subject = "Statistics";
+        String subject = "Single Mode Training Statistics";
         composeEmail(addresses,subject);
     }
 
@@ -97,6 +100,13 @@ public class SingleStatsActivity extends AppCompatActivity {
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+
+        // get stats as text and insert into body
+        String body = singleOverallStatsList.getText().toString() + '\n' +
+                singleLast10StatsList.getText().toString() + '\n' +
+                singleLast100StatsList.getText().toString()+'\n';
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
