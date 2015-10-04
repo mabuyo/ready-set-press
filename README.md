@@ -21,3 +21,8 @@ limitations under the License.
 ## VIDEO DEMO
 Youtube link: https://www.youtube.com/watch?v=MiA-2K9lCko&feature=youtu.be
 MKV file can also be found in the docs folder.
+
+## SOURCES
+http://www.tutorialspoint.com/android/android_alert_dialoges.htm -> for all code snippets involving showing a dialog box
+https://developer.android.com/guide/components/intents-common.html#Email --> Emailing statistics
+http://stackoverflow.com/questions/4114095/revert-to-a-previous-git-commit --> Reset to a previous git commit
