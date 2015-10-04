@@ -17,3 +17,6 @@ limitations under the License.
 
 ## DESCRIPTION
 [CMPUT301 Assignment 1] Android app that measures reaction times and buzzer counts.
+
+## VIDEO DEMO
+Download from the following link: https://archive.org/details/mabuyo-readysetpress-demo
