@@ -1,7 +1,6 @@
 package com.cmput301.mmabuyo.readysetpress;
 
 import android.content.Context;
-import android.widget.Toast;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -21,14 +21,6 @@
             android:label="@string/title_activity_single_mode_training" >
         </activity>
         <activity
-            android:name=".StatisticsActivity"
-            android:label="@string/title_activity_statistics" >
-        </activity>
-        <activity
-            android:name=".SingleStatsActivity"
-            android:label="@string/title_activity_single_statistics" >
-        </activity>
-        <activity
             android:name=".MultiplayerActivity"
             android:label="@string/title_activity_multiplayer" >
         </activity>
@@ -37,16 +29,16 @@
             android:label="@string/title_activity_two_player" >
         </activity>
         <activity
-            android:name=".MultiplayerStatsActivity"
-            android:label="@string/title_activity_multiplayer_stats" >
-        </activity>
-        <activity
             android:name=".ThreePlayerActivity"
             android:label="@string/title_activity_three_player" >
         </activity>
         <activity
             android:name=".FourPlayerActivity"
             android:label="@string/title_activity_four_player" >
+        </activity>
+        <activity
+            android:name=".ShowStatsActivity"
+            android:label="@string/title_activity_show_stats" >
         </activity>
     </application>
 

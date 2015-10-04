@@ -63,5 +63,4 @@ public class GameshowResults {
         this.setThreePlayerResults(new int[3]);
         this.setFourPlayerResults(new int[4]);
     }
-
 }

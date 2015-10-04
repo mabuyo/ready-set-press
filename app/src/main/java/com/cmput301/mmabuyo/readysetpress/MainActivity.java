@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // http://www.tutorialspoint.com/android/android_alert_dialoges.htm
     public void singleModeInstructions(View view) {
         AlertDialog.Builder singleModeInstructionsDialog = new AlertDialog.Builder(this);
         singleModeInstructionsDialog.setTitle("Single Mode Training Instructions");
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showStatisticsActivity(View view) {
-        Intent switchToStatisticsActivity = new Intent(MainActivity.this, StatisticsActivity.class);
+        Intent switchToStatisticsActivity = new Intent(MainActivity.this, ShowStatsActivity.class);
         startActivity(switchToStatisticsActivity);
     }
 

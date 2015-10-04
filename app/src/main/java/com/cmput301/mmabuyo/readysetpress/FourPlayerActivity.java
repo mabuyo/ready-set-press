@@ -28,7 +28,7 @@ public class FourPlayerActivity extends AppCompatActivity {
         playerThree = new Player(3);
         playerFour = new Player(4);
 
-        // initiate game results, make sure it loads
+        // load saved game results object
         gameResults = memoryManager.loadGameshowResults(FourPlayerActivity.this, memoryManager.getMultiStatsFilename());
     }
 
@@ -55,8 +55,9 @@ public class FourPlayerActivity extends AppCompatActivity {
     }
 
     public void someoneClicked(View view) {
-        int pclicked = 0;
-        // find out who, increment their click and save
+        int pclicked = 0;   // which player clicked?
+        // find out who, increment their click and save the results
+
         switch (view.getId()) {
             case R.id.P1button4P:
                 playerOne.addClick();
@@ -86,6 +87,7 @@ public class FourPlayerActivity extends AppCompatActivity {
                 Toast.makeText(this, "Something has gone wrong.", Toast.LENGTH_SHORT).show();
         }
 
+        // show message who clicked first, and restart the game
         AlertDialog.Builder playerClickedDialog = new AlertDialog.Builder(this);
         playerClickedDialog.setTitle("Next round!");
         String message = "Player " + pclicked  + " pressed the button first!";
@@ -94,7 +96,6 @@ public class FourPlayerActivity extends AppCompatActivity {
         playerClickedDialog.setPositiveButton("Start again.", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-
             }
         });
 
