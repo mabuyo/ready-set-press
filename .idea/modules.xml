@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Ready-Set-Press.iml" filepath="$PROJECT_DIR$/Ready-Set-Press.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ready-set-press.iml" filepath="$PROJECT_DIR$/ready-set-press.iml" />
     </modules>
   </component>
 </project>
