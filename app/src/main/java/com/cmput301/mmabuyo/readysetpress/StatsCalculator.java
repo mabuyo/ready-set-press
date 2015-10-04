@@ -16,7 +16,9 @@ limitations under the License.
 
 package com.cmput301.mmabuyo.readysetpress;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
@@ -47,5 +49,21 @@ public class StatsCalculator {
             }
             return sum / reactionTimes.size();
         }
+    }
+
+    protected long getMedianTime(ArrayList<Long> reactionTimes) {
+        Long[] rtimes;
+        // toArray: http://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html
+        rtimes = reactionTimes.toArray(new Long[reactionTimes.size()]);
+        Arrays.sort(rtimes);
+        long median;
+
+        // even size, get average of two middle values
+        if (rtimes.length % 2 == 0) {
+            median = (rtimes[rtimes.length/2] + rtimes[rtimes.length/2 - 1])/2;
+        } else {    // odd size, just get middle value
+            median = rtimes[rtimes.length/2];
+        }
+        return median;
     }
 }

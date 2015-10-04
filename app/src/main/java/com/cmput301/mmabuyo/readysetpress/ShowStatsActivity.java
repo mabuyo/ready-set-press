@@ -51,30 +51,36 @@ public class ShowStatsActivity extends AppCompatActivity {
             long fastest = reactionTime.getStats().getFastestTime(reactionTime.getReactionTimes());
             long slowest = reactionTime.getStats().getSlowestTime(reactionTime.getReactionTimes());
             long average = reactionTime.getStats().getAverageTime(reactionTime.getReactionTimes());
-            //long median = reactionTime.getOverallMedianTime();
+            long median = reactionTime.getStats().getMedianTime(reactionTime.getReactionTimes());
 
             overallMessage += "ALL\n" +
                     "The fastest reaction time is: " + String.valueOf(fastest) + '\n' +
                     "The slowest reaction time is: " + String.valueOf(slowest) + '\n' +
-                    "The average reaction time is: " + String.valueOf(average) + "\n\n";
+                    "The average reaction time is: " + String.valueOf(average) + '\n' +
+                    "The median reaction time is: " + String.valueOf(median) + "\n\n";
 
             long last10fastest = reactionTime.getStats().getFastestTime(reactionTime.getTenRecentReactionTimes());
             long last10slowest = reactionTime.getStats().getSlowestTime(reactionTime.getTenRecentReactionTimes());
             long last10average = reactionTime.getStats().getAverageTime(reactionTime.getTenRecentReactionTimes());
+            long last10median = reactionTime.getStats().getMedianTime(reactionTime.getTenRecentReactionTimes());
 
             overallMessage += "LAST TEN\n" +
                     "The fastest reaction time is: " + String.valueOf(last10fastest) + '\n' +
                     "The slowest reaction time is: " + String.valueOf(last10slowest) + '\n' +
-                    "The average reaction time is: " + String.valueOf(last10average) + "\n\n";
+                    "The average reaction time is: " + String.valueOf(last10average) + '\n' +
+                    "The median reaction time is: " + String.valueOf(last10median) + "\n\n";
 
             long last100fastest = reactionTime.getStats().getFastestTime(reactionTime.getHundredRecentReactionTimes());
             long last100slowest = reactionTime.getStats().getSlowestTime(reactionTime.getHundredRecentReactionTimes());
             long last100average = reactionTime.getStats().getAverageTime(reactionTime.getHundredRecentReactionTimes());
+            long last100median = reactionTime.getStats().getMedianTime(reactionTime.getHundredRecentReactionTimes());
 
             overallMessage += "LAST ONE HUNDRED\n" +
                     "The fastest reaction time is: " + String.valueOf(last100fastest) + '\n' +
                     "The slowest reaction time is: " + String.valueOf(last100slowest) + '\n' +
-                    "The average reaction time is: " + String.valueOf(last100average) + "\n\n";
+                    "The average reaction time is: " + String.valueOf(last100average) + '\n' +
+                    "The median reaction time is: " + String.valueOf(last100median) + "\n\n";
+
 
         } catch (NoSuchElementException e){
             String errorMessage = "\nNo statistics found for single mode training.\n\n";
