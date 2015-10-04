@@ -101,6 +101,4 @@ public class SingleStatsActivity extends AppCompatActivity {
 //        }
 //    }
 
-
-
 }
