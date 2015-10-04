@@ -29,6 +29,7 @@ public class MemoryManager {
         return this.MULTISTATS_FILENAME;
     }
 
+    // The methods below were edited from UAlberta CMPUT 301, CMPUT 301 Lab Materials
     protected ReactionTime loadTrainingResults(Context context, String filename) {
         ReactionTime results;
         try {
