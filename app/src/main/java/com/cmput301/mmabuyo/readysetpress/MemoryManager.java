@@ -28,6 +28,17 @@ import java.io.OutputStreamWriter;
 
 /**
  * Created by mmabuyo on 2015-09-30.
+ * Purpose:
+ *      This class is responsible for managing and updating ReactionTime and GameshowResults objects.
+ * Design Rationale:
+ *      Working off of the LonelyTwitter examples in the UAlberta CMPUT301 Labs, Gson is used to
+ *      convert objects into json format and storing them as persistent data on the device.
+ * Outstanding Issues:
+ *     1. Methods that involve loading a file should be responsible for knowing which filename the
+ *     object corresponds to. I.e. activity shouldn't have to specify it as a parameter.
+ *     2. Should be able to generalize methods (i.e. one load method to handle both GameshowResults
+ *     and ReactionTime objects, but did not want to deal with generic type objects in the method,
+ *     so I duplicated both functions.
  */
 public class MemoryManager {
     private static final String SINGLESTATS_FILENAME = "singlestats.sav";

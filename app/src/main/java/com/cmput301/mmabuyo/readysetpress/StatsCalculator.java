@@ -16,7 +16,6 @@ limitations under the License.
 
 package com.cmput301.mmabuyo.readysetpress;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +23,16 @@ import java.util.NoSuchElementException;
 
 /**
  * Created by mmabuyo on 2015-10-01.
+ * Purpose:
+ *      This class is responsible for calculating statistics for reaction time in the single
+ *      player mode of the app.
+ * Design Rationale:
+ *      Used Collections to find max and min for an ArrayList of reactionTimes.
+ *      Finding the median time required converting to an Array to sort and find the median
+ *      of the data.
+ *
+ * Outstanding Issues:
+ *      None.
  */
 public class StatsCalculator {
     public StatsCalculator() {

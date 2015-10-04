@@ -18,6 +18,14 @@ package com.cmput301.mmabuyo.readysetpress;
 
 /**
  * Created by mmabuyo on 2015-09-30.
+ *  * Purpose:
+ *      This class is responsible for acting as the users of the app (players of the Gameshow Mode
+ *      of the app). It stores playerID and clicks for that user.
+ * Design Rationale:
+ *      pid is used to determine the player number and update the corresponding index in the
+ *      GameshowResults class.
+ * Outstanding Issues:
+ *      None.
  */
 public class Player {
     protected int pid;

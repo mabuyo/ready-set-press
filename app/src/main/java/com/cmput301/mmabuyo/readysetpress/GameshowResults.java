@@ -18,6 +18,15 @@ package com.cmput301.mmabuyo.readysetpress;
 
 /**
  * Created by mmabuyo on 2015-10-01.
+ * Purpose:
+ *      This class is responsible for the multiplayer mode of the game. It stores and updates
+ *      the results of two, three and four player games as persistent data.
+ * Design Rationale:
+ *      Results are stored in integer arrays, the size of which depends on how many
+ *      players are playing that round. The first value in the array corresponds to Player One, and
+ *      so on and so forth.
+ * Outstanding Issues:
+ *      None.
  */
 public class GameshowResults {
     protected int[] twoPlayerResults;

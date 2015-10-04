@@ -21,6 +21,20 @@ import java.util.List;
 
 /**
  * Created by mmabuyo on 2015-09-28.
+ * Purpose:
+ *      This class is responsible for the single player mode of the game. It calculates reactionTime
+ *      and stores a list of reactionTimes as persistent data in the app.
+ * Design Rationale:
+ *      Reaction time is calculated by subtracting the end time (user clicks the button) and the
+ *      start time (time starts when click prompt is shown). An ArrayList stores reaction times as
+ *      longs. I chose ArrayList because the size of the ArrayList can expand, as opposed to just
+ *      simple Arrays. This class is responsible for returning the last 10, last 100 and all
+ *      reaction times it has stored; makes it easier for stats calculator!
+ * Outstanding Issues:
+ *      I think I could've figured out an alternative way to get single mode of the app to be more
+ *      object oriented. The attribute clickable could be handled better with a different method
+ *      that calculated the time if it was less than 2000ms (or before the click prompt appeared,ie
+ *      user clicked too fast) instead of setting a boolean variable.
  */
 public class ReactionTime {
     private long startTime;
