@@ -20,7 +20,7 @@ limitations under the License.
 
 ## VIDEO DEMO
 Youtube link: https://www.youtube.com/watch?v=MiA-2K9lCko&feature=youtu.be
-MKV file can also be found in the docs folder.
+MKV file can also be found in the docs folder. Video demo incorrectly shows app launcher name as mabuyo-readysetpress, this has been corrected in the apk file as mabuyo-reflex as the assignment requires.
 
 ## SOURCES
 http://www.tutorialspoint.com/android/android_alert_dialoges.htm -> for all code snippets involving showing a dialog box
